@@ -1,43 +1,195 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <head>
-        <title>Img Responsive</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="bootstrap.min.css">
         <link href="style.css" media="all" rel="stylesheet">
     </head>
     <body>
         
-        <h2>Ejemplo sencillo, sin nada. Las imagenes se recortan por el owerflow...</h2>
-        <ul id="simple">
-            <li class="col-3"><a href="#"><img src="4x3.jpg"></a></li>
-            <li class="col-3"><a href="#"><img src="5x7.jpg"></a></li>
-            <li class="col-3"><a href="#"><img src="16x9.jpg"></a></li>
-        </ul>
+        <header class="container">
+            <h1>Imagenes adaptables al canvas</h1>
+            <p>Proyecto ejemplo para adaptar diferente tipo de imagen a un 
+            determinado tipo de canvas. Es bastante útil para no romper el diseño
+            cuando un usuario sube imagenes mediante un formulario y no podemos controlarlo.</p>
+        </header>
         
-        <h2 class="clear-both">4 Imagenes con el ratio 16x9 aplicado</h2>
-        <ul id="ratio16x9">
-            <li class="col-4"><a href="#"><img src="4x3.jpg"></a></li>
-            <li class="col-4"><a href="#"><img src="5x7.jpg"></a></li>
-            <li class="col-4"><a href="#"><img src="16x9.jpg"></a></li>
-            <li class="col-4"><a href="#"><img src="5x7.jpg"></a></li>
-        </ul>
+        <div class="container">
+            <p class="clearfix">&nbsp;</p>
+            <h2>Ejemplo sencillo, sin nada. Las imagenes se recortan por el owerflow...</h2>
+            <hr>
+            <ul id="simple">
+                <li class="col-3"><a href="#"><img src="4x3.jpg"></a></li>
+                <li class="col-3"><a href="#"><img src="5x7.jpg"></a></li>
+                <li class="col-3"><a href="#"><img src="16x9.jpg"></a></li>
+            </ul>
+            
+            <p class="clear-both">&nbsp;</p>
+            <pre>
+
+                //Código basico necesario para el funcionamiento
+
+                ul {
+                    width: 100%;
+                    padding: 0px;
+                    margin: 0px;
+                    list-style: none;
+                }
+
+                li {
+                    margin: 0px;
+                    padding: 0px;
+                    float: left;
+                    border: 10px solid #fff;
+                    -moz-box-sizing: border-box;
+                    box-sizing: border-box;
+                    overflow: hidden;
+                }
+
+                li a { 
+                    margin: 0px;
+                    padding: 0px;
+                    display: block;
+                    width: 100%;
+                }
+
+                img {
+                    display: block;                 //Esto es necesario para que la imagen cubra todo 
+                }
+            </pre>
+
+            <p class="clearfix">&nbsp;</p>          
+            <h2 class="clear-both">4 Imagenes con el ratio 16x9 aplicado</h2>
+            <hr>
+            <p class="clearfix">&nbsp;</p>
+            
+            <ul id="ratio16x9">
+                <li class="col-4"><a href="#"><img src="4x3.jpg"></a></li>
+                <li class="col-4"><a href="#"><img src="5x7.jpg"></a></li>
+                <li class="col-4"><a href="#"><img src="16x9.jpg"></a></li>
+                <li class="col-4"><a href="#"><img src="5x7.jpg"></a></li>
+            </ul>
+            <pre>
+                /**
+                *
+                *   Ratio 16x9
+                *   El 56.25% lo obtenemos dividiendo 9 entre 16
+                *   Es curioso que la altura es 0 sin embargo el padding es 56.25%... ahí esta el truco del almendruco
+                */
+                #ratio16x9 li a {
+                    position: relative;
+                    height: 0px;
+                    padding-top: 56.25%;
+                }
+
+                #ratio16x9 img {
+                    width: 100%;
+                    position: absolute;
+                    top: 0px;
+                    bottom: 0px;
+                    right: 0px;
+                    left: 0px;
+                }
+            </pre>
+
+            <p class="clearfix">&nbsp;</p>
+            <h2 class="clear-both">3 Imagenes con el ratio de 4x3 centradas</h2>
+            <hr>
+            <ul id="ratio4x3">
+                <li class="col-3"><a href="#"><img src="4x3.jpg"></a></li>
+                <li class="col-3"><a href="#"><img src="5x7.jpg"></a></li>
+                <li class="col-3"><a href="#"><img src="16x9.jpg"></a></li>
+            </ul>
+            <pre>
+                /**
+                *
+                *   Ratio 4x3
+                *   El 75% lo obtenemos dividiendo 3 entre 4
+                *   En el ratio de 16x9 tienes mas explicaciones del código
+                */
+                #ratio4x3 li {
+                    background-color: #000;
+                }
+
+                #ratio4x3 li a {
+                    position: relative;
+                    height: 0px;
+                    padding-top: 75%;
+                }
+
+                #ratio4x3 img {
+                    max-width: 100%;
+                    max-height: 100%;
+                    margin: auto;
+                    position: absolute;
+                    top: 0px;
+                    bottom: 0px;
+                    right: 0px;
+                    left: 0px;
+                }
+            </pre>
+
+            <p class="clearfix">&nbsp;</p>
+            <h2 class="clear-both">5 Imagenes con el ratio de 5x7 con efecto nauseabundo</h2>
+            <hr>
+            <p>Asi mismo hay un captcha encima...</p>
+            <ul id="ratio5x7">
+                <li class="col-5"><a href="#"><img src="4x3.jpg"><p>Captcha con texto</p></a></li>
+                <li class="col-5"><a href="#"><img src="5x7.jpg"><p>Captcha con texto</p></a></li>
+                <li class="col-5"><a href="#"><img src="16x9.jpg"><p>Captcha con texto</p></a></li>
+                <li class="col-5"><a href="#"><img src="5x7.jpg"><p>Captcha con texto</p></a></li>
+                <li class="col-5"><a href="#"><img src="16x9.jpg"><p>Captcha con texto</p></a></li>
+            </ul>
+            <pre>
+                /**
+                *
+                *   Ratio 5x7
+                *   El 140% lo obtenemos dividiendo 7 entre 5
+                *   En el ratio de 5x7tienes mas explicaciones del código
+                */
+                #ratio5x7 li {
+                    background-color: #000;
+                }
+
+                #ratio5x7 li a {
+                    position: relative;
+                    height: 0px;
+                    padding-top: 140%;
+                }
+
+                #ratio5x7 a:hover img, #ratio5x7 a:focus img {
+                  -webkit-transform: scale(1.3);
+                  transform: scale(1.3);
+                }
+
+                #ratio5x7 img {
+                    max-width: 100%;
+                    max-height: 100%;
+                    margin: auto;
+                    position: absolute;
+                    top: 0px;
+                    bottom: 0px;
+                    right: 0px;
+                    left: 0px;
+                    -webkit-transition: all 2s ease-out;
+                    transition: all 2s ease-out;
+                }
+
+
+            </pre>
+            
+            
+        </div>
         
-        <h2 class="clear-both">3 Imagenes con el ratio de 4x3 centradas</h2>
-        <ul id="ratio4x3">
-            <li class="col-3"><a href="#"><img src="4x3.jpg"></a></li>
-            <li class="col-3"><a href="#"><img src="5x7.jpg"></a></li>
-            <li class="col-3"><a href="#"><img src="16x9.jpg"></a></li>
-        </ul>
+        <footer class="container">
+            <p class="text-center">
+                Esto es un pequeño proyecto de CSS para mantener el aspect ratio de las imagenes en su sitio.
+            </p>
+            <p class="text-center">Creado por <a href="http://www.azr.es">Anton Zekeriev Rodin</a>, dipones de más explicación 
+            en la entrada de blog de <a href="http://www.azrodin.com/programacion/mantener-el-aspect-ratio-de-4x3-16x9-o-el-que-sea-en-las-imagenes-con-css">aquí</a>.</p>
+        </footer>
         
-        <h2 class="clear-both">5 Imagenes con el ratio de 5x7 con efecto nauseabundo</h2>
-        <p>Asi mismo hay un captcha encima...</p>
-        <ul id="ratio5x7">
-            <li class="col-5"><a href="#"><img src="4x3.jpg"><p>Captcha con texto</p></a></li>
-            <li class="col-5"><a href="#"><img src="5x7.jpg"><p>Captcha con texto</p></a></li>
-            <li class="col-5"><a href="#"><img src="16x9.jpg"><p>Captcha con texto</p></a></li>
-            <li class="col-5"><a href="#"><img src="5x7.jpg"><p>Captcha con texto</p></a></li>
-            <li class="col-5"><a href="#"><img src="16x9.jpg"><p>Captcha con texto</p></a></li>
-        </ul>
     </body>
 </html>
