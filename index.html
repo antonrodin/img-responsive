@@ -179,6 +179,33 @@
 
 
             </pre>
+
+            <p class="clearfix">&nbsp;</p>
+            <h2 class="clear-both">Imagen centrada y recortada por los laterales...</h2>
+            <p>Imagen centrada verticalmente dentro de un DIV y que se recorte por los lados con el CSS. Desgraciadamente
+                no he conseguido hacer lo mismo que se centre horizontal y verticalmente</p>
+            <pre>
+                #cartel li a {
+                    position: relative;
+                    height: 0px;
+                    padding-top: 140%;
+                }
+
+                #cartel img {
+                    width: 100%;
+                    position: absolute;
+                    margin: auto;
+                    top: 0px;
+                    left: -50%;
+                    right: -50%;
+                }
+            </pre>
+            <hr>
+            <ul id="cartel">               
+                <li class="col-3"><a href="#"><img src="5x7.jpg"></a></li>
+                <li class="col-3"><a href="#"><img  src="test-5x7.jpg"></a></li>
+                <li class="col-3"><a href="#"><img src="chukki-high.jpg"></a></li>
+            </ul>
             
             
         </div>

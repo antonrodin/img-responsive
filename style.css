@@ -124,3 +124,23 @@ img {
 }
 
 #ratio5x7 p { position: absolute; bottom: 10px; right: 0px; color: #fff; background-color: #000; }
+
+
+/**
+* Ratio = 5x7 pero centrando la imagen
+*/
+#cartel li a {
+    background-color: #000;
+    position: relative;
+    height: 0px;
+    padding-top: 140%;
+}
+
+#cartel img {
+    height: 100%;
+    position: absolute;
+    margin: 0 auto;
+    top: 0px;
+    left: -50%;
+    right: -50%;
+}
